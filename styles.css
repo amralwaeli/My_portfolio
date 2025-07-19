@@ -1,0 +1,525 @@
+/* Base Styles - Professional Blue & Emerald Theme */
+:root {
+    /* Backgrounds from your table */
+    --bg-main: #f2f3f7;   /* subtle soft gray-blue tone, cleaner than plain gray */
+    --bg-card: #ffffff;   /* keep cards white for contrast */
+
+    /* Text from your table */
+    --text-primary: #111827;
+    --text-secondary: #6B7280;
+
+    /* Colors from your table */
+    --color-headings: #1D4ED8;
+    --color-accent: #2563EB;
+    --color-accent-dark: #1D4ED8; /* Darker blue for hover */
+    --color-cta: #10B981;
+    --color-cta-dark: #059669; /* Darker emerald for hover */
+
+    /* Borders from your table */
+    --color-border: #E5E7EB;
+
+    /* Standard variables */
+    --transition: all 0.3s ease;
+    --border-radius: 8px;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5 {
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--color-headings);
+}
+
+.logo {
+    font-weight: 700;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 1.8rem;
+}
+
+h1 {
+    font-size: 2.8rem;
+    color: var(--text-primary); /* h1 is main title, should be primary text */
+}
+
+h2 {
+    font-size: 2.2rem;
+    position: relative;
+    padding-bottom: 15px;
+    margin-bottom: 30px; 
+}
+
+h2.text-center:after {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+h2:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: var(--color-accent);
+    border-radius: 2px;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Button Styling */
+.btn {
+    display: inline-block;
+    background: var(--color-accent);
+    color: white;
+    padding: 12px 30px;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: var(--color-accent-dark);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+
+/* CTA Button Alternate Style */
+.btn.btn-cta {
+    background: var(--color-cta);
+}
+
+.btn.btn-cta:hover {
+    background: var(--color-cta-dark);
+}
+
+
+.section {
+    padding: 80px 0;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.card {
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+    border: 1px solid var(--color-border);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Header & Navigation */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 20px 0;
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo span {
+    color: var(--color-accent);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 500;
+    transition: var(--transition);
+    position: relative;
+    padding: 5px 0;
+}
+
+.nav-links a:after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-accent);
+    transition: var(--transition);
+}
+
+.nav-links a:hover:after {
+    width: 100%;
+}
+
+.nav-links a:hover {
+    color: var(--color-accent);
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+    padding: 160px 0 80px;
+    text-align: center;
+    background-color: var(--bg-card); 
+}
+
+.hero p {
+    font-size: 1.3rem;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    color: var(--text-secondary);
+}
+
+/* About Section */
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.about-img {
+    position: relative;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.about-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Services & Testimonials Section */
+.services-section, .testimonials-section {
+    padding: 80px 0;
+}
+
+.services {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    padding: 25px;
+    text-align: center;
+}
+
+.service-icon {
+    font-size: 2.5rem;
+    color: var(--color-accent);
+    margin-bottom: 20px;
+}
+
+.testimonials {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.testimonial-card:before {
+    content: '"';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 5rem;
+    color: var(--color-accent);
+    opacity: 0.1;
+    font-family: Georgia, serif;
+}
+
+.client-info {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.client-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+    object-fit: contain;
+    background-color: var(--bg-main);
+}
+
+/* Resume Section */
+.resume-section {
+    background: var(--bg-main);
+}
+
+.resume-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.timeline {
+    position: relative;
+    padding-left: 30px;
+}
+
+.timeline:before, .timeline-item:before {
+    background: var(--color-accent);
+}
+
+.timeline:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 2px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+    padding-left: 20px;
+}
+
+.timeline-item:before {
+    content: '';
+    position: absolute;
+    left: -9px;
+    top: 5px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+}
+
+.timeline-date {
+    color: var(--text-secondary);
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.knowledge-list, .languages-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.knowledge-item i, .language-item i {
+    color: var(--color-accent);
+    margin-right: 10px;
+    width: 20px;
+}
+
+/* Contact Section */
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+}
+
+.contact-detail i {
+    font-size: 1.5rem;
+    color: var(--color-accent);
+    margin-right: 15px;
+    min-width: 30px;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #F3F4F6; /* Slightly different gray for contrast */
+    color: var(--text-secondary);
+    transition: var(--transition);
+}
+
+.social-links a:hover {
+    background: var(--color-accent);
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+.contact-form .form-group {
+    margin-bottom: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 14px 15px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    background: var(--bg-main);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--color-accent);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+/* Footer */
+footer {
+    background: var(--bg-card);
+    padding: 40px 0;
+    text-align: center;
+    border-top: 1px solid var(--color-border);
+    color: var(--text-secondary);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .resume-grid, 
+    .contact-container,
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        top: 80px; 
+        left: 0;
+        background: var(--bg-card);
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        transform: translateY(-150%);
+        transition: var(--transition);
+        border-top: 1px solid var(--color-border);
+    }
+    
+    .nav-links.active {
+        transform: translateY(0);
+    }
+    
+    .nav-links li {
+        margin: 15px 0;
+        margin-left: 0;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    h1 {
+        font-size: 2.3rem;
+    }
+    
+    h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .section,
+    .services-section, 
+    .testimonials-section {
+        padding: 60px 0;
+    }
+    
+    .services, 
+    .testimonials,
+    .knowledge-list,
+    .languages-list {
+        grid-template-columns: 1fr;
+    }
+}
+/* --- Testimonial Client Info Fix --- */
+
+/* Change the flex alignment to align items to the top */
+.client-info {
+    align-items: flex-start; 
+}
+
+/* Style the <div> that wraps the text for better spacing */
+.client-info > div {
+    padding-top: 5px; /* Add a little space to align text nicely with the avatar's center */
+}
+
+/* Style the title (h4) */
+.client-info h4 {
+    color: var(--color-accent); /* Use bright blue for the title */
+    margin: 0 0 2px 0;      /* Remove default margins, add a tiny space below */
+    font-size: 0.95rem;     /* Slightly reduce font size */
+    line-height: 1.2;
+}
+
+/* Style the company name (p) */
+.client-info p {
+    margin: 0;
+    color: var(--text-secondary); /* Use secondary text color for the company */
+    font-size: 0.9rem;
+    line-height: 1.2;
+}
