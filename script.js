@@ -360,7 +360,7 @@ function normalizeExternalUrl(url) {
 function openExternalProjectLink(url) {
     const safeUrl = normalizeExternalUrl(url);
     if (!safeUrl) return;
-    window.open(safeUrl, '_blank', 'noopener,noreferrer');
+    window.location.assign(safeUrl);
 }
 
 if (projectsGrid) {
@@ -403,9 +403,9 @@ if (projectsGrid) {
                         <button class="cert-view-btn proj-open-btn" data-index="${realIndex}">
                             <i class="fas fa-eye"></i> View Details
                         </button>
-                        ${proj.liveUrl ? `<a href="${normalizeExternalUrl(proj.liveUrl)}" target="_blank" rel="noopener" class="cert-view-btn proj-live-btn" data-live-url="${normalizeExternalUrl(proj.liveUrl)}">
+                        ${proj.liveUrl ? `<button type="button" class="cert-view-btn proj-live-btn" data-live-url="${normalizeExternalUrl(proj.liveUrl)}">
                             <i class="fas fa-external-link-alt"></i> Live Site
-                        </a>` : ''}
+                        </button>` : ''}
                     </div>
                 </div>
                 <div class="proj-card-body">
@@ -467,10 +467,8 @@ function openProjectModal(index) {
     const liveBtn = document.getElementById('modal-live-btn');
     const ghBtn = document.getElementById('modal-github-btn');
     liveBtn.style.display = proj.liveUrl ? 'inline-flex' : 'none';
-    liveBtn.href = normalizeExternalUrl(proj.liveUrl) || 'javascript:void(0)';
     liveBtn.dataset.liveUrl = normalizeExternalUrl(proj.liveUrl);
     ghBtn.style.display = proj.githubUrl ? 'inline-flex' : 'none';
-    ghBtn.href = normalizeExternalUrl(proj.githubUrl) || 'javascript:void(0)';
     ghBtn.dataset.githubUrl = normalizeExternalUrl(proj.githubUrl);
 
     document.getElementById('proj-modal').classList.add('active');
