@@ -333,11 +333,11 @@ animateElements.forEach((el) => {
 const projects = [
     // ── EXAMPLE — replace with your real projects ──────────
     {
-        title: 'Company Website',
-        client: 'Client: Your Client Name',
+        title: 'Blackviral.club',
+        client: 'Client: Black Viral AC',
         category: 'web',
         categoryLabel: 'Website',
-        image: 'assets/images/projects/project-1.jpg',
+        image: 'assets/images/projects/blackviral.webp',
         description: 'A fully responsive business website built with HTML, CSS, and JavaScript. Includes a contact form, services section, and mobile-friendly navigation.',
         tags: ['HTML', 'CSS', 'JavaScript'],
         liveUrl: 'https://example.com',
