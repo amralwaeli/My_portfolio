@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Amr Alwaeli</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Amr<span> Alwaeli</span></a>
+            <button class="mobile-menu-btn" aria-label="Open navigation menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#resume">Resume</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
+                <li><a href="certificates.html">Certificates</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <p class="eyebrow">My Work</p>
+            <h1>Projects</h1>
+            <p class="page-intro">A showcase of websites, apps, and solutions I've built for clients and personal projects.</p>
+            <div class="cert-stats">
+                <div class="cert-stat"><span class="cert-stat-num" id="proj-count">0</span><span class="cert-stat-label">Projects</span></div>
+                <div class="cert-stat-divider"></div>
+                <div class="cert-stat"><span class="cert-stat-num" id="client-count">0</span><span class="cert-stat-label">Clients</span></div>
+                <div class="cert-stat-divider"></div>
+                <div class="cert-stat"><span class="cert-stat-num">2025</span><span class="cert-stat-label">Latest</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section cert-section">
+        <div class="container">
+            <div class="cert-filter-bar" id="proj-filter-bar">
+                <button class="cert-filter-btn active" data-filter="all">All</button>
+            </div>
+            <div id="projects-grid" class="projects-grid"></div>
+            <div id="proj-empty" class="proj-empty" style="display:none;">
+                <i class="fas fa-folder-open"></i>
+                <p>No projects in this category yet.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modal -->
+    <div id="proj-modal" class="proj-modal" role="dialog" aria-modal="true">
+        <div class="proj-modal-box">
+            <button class="proj-modal-close" id="proj-modal-close" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div class="proj-modal-media">
+                <img id="modal-img" src="" alt="">
+            </div>
+            <div class="proj-modal-body">
+                <div class="proj-modal-tags" id="modal-tags"></div>
+                <h2 id="modal-title"></h2>
+                <p id="modal-client" class="proj-modal-client"></p>
+                <p id="modal-desc" class="proj-modal-desc"></p>
+                <div class="proj-modal-actions">
+                    <a id="modal-live-btn" href="#" target="_blank" rel="noopener" class="btn">
+                        <i class="fas fa-external-link-alt"></i> View Live Site
+                    </a>
+                    <a id="modal-github-btn" href="#" target="_blank" rel="noopener" class="btn btn-secondary">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="proj-modal-backdrop" class="proj-modal-backdrop"></div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Amr Alwaeli. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

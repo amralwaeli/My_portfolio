@@ -288,3 +288,146 @@ animateElements.forEach((el) => {
     el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
     observer.observe(el);
 });
+
+/* =========================================================
+   PROJECTS DATA — edit this array to add your projects
+   ========================================================= */
+const projects = [
+    // ── EXAMPLE — replace with your real projects ──────────
+    {
+        title: 'Company Website',
+        client: 'Client: Your Client Name',
+        category: 'web',
+        categoryLabel: 'Website',
+        image: 'assets/images/projects/project-1.jpg',
+        description: 'A fully responsive business website built with HTML, CSS, and JavaScript. Includes a contact form, services section, and mobile-friendly navigation.',
+        tags: ['HTML', 'CSS', 'JavaScript'],
+        liveUrl: 'https://example.com',
+        githubUrl: 'https://github.com/amralwaeli'
+    },
+    // ── Copy the block above to add more projects ──────────
+];
+
+/* =========================================================
+   PROJECTS PAGE LOGIC
+   ========================================================= */
+const projectsGrid = document.getElementById('projects-grid');
+const projFilterBar = document.getElementById('proj-filter-bar');
+
+if (projectsGrid) {
+    const uniqueClients = [...new Set(projects.map(p => p.client))].length;
+    const projCountEl = document.getElementById('proj-count');
+    const clientCountEl = document.getElementById('client-count');
+    if (projCountEl) projCountEl.textContent = projects.length;
+    if (clientCountEl) clientCountEl.textContent = uniqueClients;
+
+    // Build dynamic filter buttons from categories in data
+    const categories = [...new Set(projects.map(p => p.category))];
+    categories.forEach(cat => {
+        const label = projects.find(p => p.category === cat).categoryLabel;
+        const btn = document.createElement('button');
+        btn.className = 'cert-filter-btn';
+        btn.dataset.filter = cat;
+        btn.textContent = label;
+        projFilterBar.appendChild(btn);
+    });
+
+    function renderProjects(filter = 'all') {
+        const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter);
+        const empty = document.getElementById('proj-empty');
+
+        if (filtered.length === 0) {
+            projectsGrid.innerHTML = '';
+            if (empty) empty.style.display = 'flex';
+            return;
+        }
+        if (empty) empty.style.display = 'none';
+
+        projectsGrid.innerHTML = filtered.map((proj) => {
+            const realIndex = projects.indexOf(proj);
+            return `
+            <article class="proj-card" data-index="${realIndex}">
+                <div class="proj-card-media">
+                    <img src="${proj.image}" alt="${proj.title}" loading="lazy"
+                        onerror="this.closest('.proj-card-media').innerHTML='<div class=\\'proj-img-placeholder\\'><i class=\\'fas fa-globe\\'></i></div>';">
+                    <div class="proj-card-overlay">
+                        <button class="cert-view-btn proj-open-btn" data-index="${realIndex}">
+                            <i class="fas fa-eye"></i> View Details
+                        </button>
+                        ${proj.liveUrl ? `<a href="${proj.liveUrl}" target="_blank" rel="noopener" class="cert-view-btn proj-live-btn">
+                            <i class="fas fa-external-link-alt"></i> Live Site
+                        </a>` : ''}
+                    </div>
+                </div>
+                <div class="proj-card-body">
+                    <div class="proj-tags">
+                        ${proj.tags.map(t => `<span class="proj-tag">${t}</span>`).join('')}
+                    </div>
+                    <h3 class="cert-title">${proj.title}</h3>
+                    <p class="cert-issuer"><i class="fas fa-building"></i> ${proj.client}</p>
+                </div>
+            </article>`;
+        }).join('');
+
+        projectsGrid.querySelectorAll('.proj-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(24px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            setTimeout(() => { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; }, 60);
+        });
+    }
+
+    renderProjects();
+
+    projFilterBar.addEventListener('click', e => {
+        const btn = e.target.closest('.cert-filter-btn');
+        if (!btn) return;
+        projFilterBar.querySelectorAll('.cert-filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderProjects(btn.dataset.filter);
+    });
+
+    projectsGrid.addEventListener('click', e => {
+        const openBtn = e.target.closest('.proj-open-btn');
+        if (openBtn) openProjectModal(parseInt(openBtn.dataset.index));
+    });
+}
+
+/* =========================================================
+   PROJECT MODAL
+   ========================================================= */
+function openProjectModal(index) {
+    const proj = projects[index];
+    if (!proj) return;
+
+    document.getElementById('modal-img').src = proj.image;
+    document.getElementById('modal-img').alt = proj.title;
+    document.getElementById('modal-title').textContent = proj.title;
+    document.getElementById('modal-client').textContent = proj.client;
+    document.getElementById('modal-desc').textContent = proj.description;
+
+    document.getElementById('modal-tags').innerHTML = proj.tags.map(t => `<span class="proj-tag">${t}</span>`).join('');
+
+    const liveBtn = document.getElementById('modal-live-btn');
+    const ghBtn = document.getElementById('modal-github-btn');
+    liveBtn.style.display = proj.liveUrl ? 'inline-flex' : 'none';
+    liveBtn.href = proj.liveUrl || '#';
+    ghBtn.style.display = proj.githubUrl ? 'inline-flex' : 'none';
+    ghBtn.href = proj.githubUrl || '#';
+
+    document.getElementById('proj-modal').classList.add('active');
+    document.getElementById('proj-modal-backdrop').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeProjectModal() {
+    document.getElementById('proj-modal')?.classList.remove('active');
+    document.getElementById('proj-modal-backdrop')?.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+document.getElementById('proj-modal-close')?.addEventListener('click', closeProjectModal);
+document.getElementById('proj-modal-backdrop')?.addEventListener('click', closeProjectModal);
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeProjectModal();
+});
