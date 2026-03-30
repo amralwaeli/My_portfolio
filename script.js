@@ -101,80 +101,73 @@ if (contactForm) {
    ========================================================= */
 const certificates = [
     {
-        title: 'Cybersecurity Fundamentals',
+        title: 'Cybersecurity',
         category: 'cybersecurity',
         categoryLabel: 'Cybersecurity',
-        filename: 'edrrak-cybersecurity.webp',
+        filename: 'Edrrak Cyper Security.webp',
         issuer: 'Edrrak'
     },
     {
-        title: 'ICDL',
+        title: '÷International Computer Driving License',
         category: 'development',
-        categoryLabel: 'Web Dev',
-        filename: 'edrrak-icdl.webp',
+        categoryLabel: 'IT',
+        filename: 'Edrrak ICDL.webp',
         issuer: 'Edrrak'
     },
     {
         title: 'Python 3',
         category: 'development',
         categoryLabel: 'Web Dev',
-        filename: 'sololearn-python3.webp',
+        filename: 'SoloLearn Python3.webp',
         issuer: 'SoloLearn'
-    },
+    },  
     {
         title: 'Android Development Training',
         category: 'mobile',
         categoryLabel: 'Mobile',
-        filename: 'udacity-adt.webp',
-        issuer: 'Udacity'
-    },
-    {
-        title: 'Android Development Training',
-        category: 'mobile',
-        categoryLabel: 'Mobile',
-        filename: 'adt-en.webp',
+        filename: 'ADT En.webp',
         issuer: 'Udacity'
     },
     {
         title: 'Excel',
         category: 'bi',
         categoryLabel: 'Business Intelligence',
-        filename: 'seattle-excel.webp',
+        filename: 'Seattle Excel.webp',
         issuer: 'Seattle'
     },
     {
-        title: 'HP LIFE',
+        title: 'Information technology for operations',
         category: 'development',
-        categoryLabel: 'Web Dev',
-        filename: 'hp-life.webp',
+        categoryLabel: 'Business Intelligence',
+        filename: 'HP LIFE.webp',
         issuer: 'HP'
     },
     {
         title: 'MIE Recognition',
         category: 'development',
         categoryLabel: 'Web Dev',
-        filename: 'mie-recognition.webp',
+        filename: 'MIE recognition.webp',
         issuer: 'Microsoft'
     },
     {
         title: 'MIE Trainer Academy',
         category: 'development',
         categoryLabel: 'Web Dev',
-        filename: 'mie-trainer.webp',
+        filename: 'MIE Trainer Academy.webp',
         issuer: 'Microsoft'
     },
     {
-        title: 'Camply 88H',
-        category: 'development',
-        categoryLabel: 'Web Dev',
-        filename: 'camply.webp',
+        title: 'Camply English Course',
+        category: 'Langauge',
+        categoryLabel: 'Langauge',
+        filename: 'Camply 88H.webp',
         issuer: 'Camply'
     },
     {
-        title: 'Skills2Work Contribution',
+        title: 'Skills2Work Data Center Contribution',
         category: 'development',
-        categoryLabel: 'Web Dev',
-        filename: 'skills2work.webp',
+        categoryLabel: 'Data Center',
+        filename: 'Skills2Work contribution.webp',
         issuer: 'Skills2Work'
     }
 ];
@@ -182,6 +175,8 @@ const certificates = [
    CERTIFICATE GALLERY
    ========================================================= */
 const certificatesGrid = document.querySelector('#certificates-grid');
+const totalCountEl = document.querySelector('#total-count');
+const fieldsCountEl = document.querySelector('#fields-count');
 
 const categoryColors = {
     cybersecurity: { bg: '#fef2f2', text: '#dc2626', border: '#fecaca' },
@@ -221,6 +216,15 @@ function buildCard(cert, index) {
 }
 
 if (certificatesGrid) {
+    if (totalCountEl) {
+        totalCountEl.textContent = certificates.length;
+    }
+
+    if (fieldsCountEl) {
+        const categoryCount = new Set(certificates.map(cert => cert.category)).size;
+        fieldsCountEl.textContent = categoryCount;
+    }
+
     certificatesGrid.innerHTML = certificates.map(buildCard).join('');
 
     // Filter buttons
