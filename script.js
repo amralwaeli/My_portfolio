@@ -61,7 +61,6 @@ if (contactForm) {
     const replytoField = contactForm.querySelector('#replyto-field');
     const endpoint = contactForm.dataset.formsubmitEndpoint;
 
-    // Mirror email → _replyto so FormSubmit threads replies properly
     if (emailField && replytoField) {
         emailField.addEventListener('input', () => {
             replytoField.value = emailField.value;
@@ -108,19 +107,19 @@ const certificates = [
         issuer: 'Edrrak'
     },
     {
-        title: '÷International Computer Driving License',
-        category: 'development',
+        title: 'International Computer Driving License',
+        category: 'it',
         categoryLabel: 'IT',
         filename: 'Edrrak ICDL.webp',
         issuer: 'Edrrak'
     },
     {
         title: 'Python 3',
-        category: 'development',
+        category: 'webdev',
         categoryLabel: 'Web Dev',
         filename: 'SoloLearn Python3.webp',
         issuer: 'SoloLearn'
-    },  
+    },
     {
         title: 'Android Development Training',
         category: 'mobile',
@@ -136,41 +135,42 @@ const certificates = [
         issuer: 'Seattle'
     },
     {
-        title: 'Information technology for operations',
-        category: 'development',
+        title: 'Information Technology for Operations',
+        category: 'bi',
         categoryLabel: 'Business Intelligence',
         filename: 'HP LIFE.webp',
         issuer: 'HP'
     },
     {
         title: 'MIE Recognition',
-        category: 'development',
+        category: 'webdev',
         categoryLabel: 'Web Dev',
         filename: 'MIE recognition.webp',
         issuer: 'Microsoft'
     },
     {
         title: 'MIE Trainer Academy',
-        category: 'development',
+        category: 'webdev',
         categoryLabel: 'Web Dev',
         filename: 'MIE Trainer Academy.webp',
         issuer: 'Microsoft'
     },
     {
-        title: 'Camply English Course',
-        category: 'Langauge',
-        categoryLabel: 'Langauge',
+        title: 'English Course (88H)',
+        category: 'language',
+        categoryLabel: 'Language',
         filename: 'Camply 88H.webp',
         issuer: 'Camply'
     },
     {
         title: 'Skills2Work Data Center Contribution',
-        category: 'development',
+        category: 'datacenter',
         categoryLabel: 'Data Center',
         filename: 'Skills2Work contribution.webp',
         issuer: 'Skills2Work'
     }
 ];
+
 /* =========================================================
    CERTIFICATE GALLERY
    ========================================================= */
@@ -180,15 +180,17 @@ const fieldsCountEl = document.querySelector('#fields-count');
 
 const categoryColors = {
     cybersecurity: { bg: '#fef2f2', text: '#dc2626', border: '#fecaca' },
-    linux:         { bg: '#fefce8', text: '#ca8a04', border: '#fde68a' },
-    bi:            { bg: '#f0fdf4', text: '#16a34a', border: '#bbf7d0' },
+    it:            { bg: '#fff7ed', text: '#ea580c', border: '#fed7aa' },
+    webdev:        { bg: '#eff6ff', text: '#2563eb', border: '#bfdbfe' },
     mobile:        { bg: '#fdf4ff', text: '#9333ea', border: '#e9d5ff' },
-    development:   { bg: '#eff6ff', text: '#2563eb', border: '#bfdbfe' }
+    bi:            { bg: '#f0fdf4', text: '#16a34a', border: '#bbf7d0' },
+    language:      { bg: '#fefce8', text: '#ca8a04', border: '#fde68a' },
+    datacenter:    { bg: '#f0f9ff', text: '#0284c7', border: '#bae6fd' }
 };
 
 function buildCard(cert, index) {
     const imagePath = `assets/images/certificates/${cert.filename}`;
-    const col = categoryColors[cert.category] || categoryColors.development;
+    const col = categoryColors[cert.category] || { bg: '#eff6ff', text: '#2563eb', border: '#bfdbfe' };
     return `
         <article class="cert-card" data-category="${cert.category}" data-index="${index}">
             <div class="cert-card-media">
@@ -216,31 +218,42 @@ function buildCard(cert, index) {
 }
 
 if (certificatesGrid) {
-    if (totalCountEl) {
-        totalCountEl.textContent = certificates.length;
-    }
+    // Update stats
+    if (totalCountEl) totalCountEl.textContent = certificates.length;
+    if (fieldsCountEl) fieldsCountEl.textContent = new Set(certificates.map(c => c.category)).size;
 
-    if (fieldsCountEl) {
-        const categoryCount = new Set(certificates.map(cert => cert.category)).size;
-        fieldsCountEl.textContent = categoryCount;
-    }
-
+    // Render cards
     certificatesGrid.innerHTML = certificates.map(buildCard).join('');
 
-    // Filter buttons
-    document.querySelectorAll('.cert-filter-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.cert-filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const filter = btn.dataset.filter;
-            document.querySelectorAll('.cert-card').forEach(card => {
-                const match = filter === 'all' || card.dataset.category === filter;
-                card.style.display = match ? '' : 'none';
-            });
+    // Build filter buttons dynamically — only categories that exist in the data
+    const certFilterBar = document.getElementById('cert-filter-bar');
+    if (certFilterBar) {
+        const seen = new Map();
+        certificates.forEach(c => {
+            if (!seen.has(c.category)) seen.set(c.category, c.categoryLabel);
+        });
+        seen.forEach((label, cat) => {
+            const btn = document.createElement('button');
+            btn.className = 'cert-filter-btn';
+            btn.dataset.filter = cat;
+            btn.textContent = label;
+            certFilterBar.appendChild(btn);
+        });
+    }
+
+    // Filter click handler
+    document.getElementById('cert-filter-bar')?.addEventListener('click', e => {
+        const btn = e.target.closest('.cert-filter-btn');
+        if (!btn) return;
+        document.querySelectorAll('.cert-filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.cert-card').forEach(card => {
+            card.style.display = (filter === 'all' || card.dataset.category === filter) ? '' : 'none';
         });
     });
 
-    // Open lightbox on view button click
+    // Open lightbox
     certificatesGrid.addEventListener('click', (e) => {
         const viewBtn = e.target.closest('.cert-view-btn');
         if (viewBtn) openLightbox(parseInt(viewBtn.dataset.index));
@@ -268,7 +281,7 @@ function closeLightbox() {
 
 function updateLightbox() {
     const cert = certificates[currentLightboxIndex];
-    const col = categoryColors[cert.category] || categoryColors.development;
+    const col = categoryColors[cert.category] || { bg: '#eff6ff', text: '#2563eb', border: '#bfdbfe' };
     document.getElementById('lightbox-img').src = `assets/images/certificates/${cert.filename}`;
     document.getElementById('lightbox-img').alt = cert.title;
     document.getElementById('lightbox-title').textContent = cert.title;
@@ -331,7 +344,6 @@ animateElements.forEach((el) => {
    PROJECTS DATA — edit this array to add your projects
    ========================================================= */
 const projects = [
-    // ── EXAMPLE — replace with your real projects ──────────
     {
         title: 'Blackviral.club',
         client: 'Client: Black Viral AC',
@@ -341,7 +353,7 @@ const projects = [
         description: 'A fully responsive sports academy and certification website built with React, Vite, and Tailwind CSS. It features dynamic course and service pages, contact and inquiry forms, live support access, team and testimonial sections, multi-location information, and user sign-in/signup with dashboard functionality.',
         tags: ['React', 'Vite', 'Tailwind CSS'],
         liveUrl: 'https://www.blackviral.club',
-        //githubUrl: ''
+        githubUrl: ''
     },
     // ── Copy the block above to add more projects ──────────
 ];
@@ -370,7 +382,7 @@ if (projectsGrid) {
     if (projCountEl) projCountEl.textContent = projects.length;
     if (clientCountEl) clientCountEl.textContent = uniqueClients;
 
-    // Build dynamic filter buttons from categories in data
+    // Build dynamic filter buttons
     const categories = [...new Set(projects.map(p => p.category))];
     categories.forEach(cat => {
         const label = projects.find(p => p.category === cat).categoryLabel;

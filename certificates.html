@@ -32,11 +32,11 @@
         <div class="container">
             <p class="eyebrow">Professional Development</p>
             <h1>Certificates</h1>
-            <p class="page-intro">A curated collection of certifications earned in software engineering, cybersecurity, Linux, business intelligence, and mobile development.</p>
+            <p class="page-intro">A curated collection of certifications earned in software engineering, cybersecurity, business intelligence, and mobile development.</p>
             <div class="cert-stats">
-                <div class="cert-stat"><span class="cert-stat-num" id="total-count">6</span><span class="cert-stat-label">Certificates</span></div>
+                <div class="cert-stat"><span class="cert-stat-num" id="total-count">0</span><span class="cert-stat-label">Certificates</span></div>
                 <div class="cert-stat-divider"></div>
-                <div class="cert-stat"><span class="cert-stat-num" id="fields-count">5</span><span class="cert-stat-label">Fields</span></div>
+                <div class="cert-stat"><span class="cert-stat-num" id="fields-count">0</span><span class="cert-stat-label">Fields</span></div>
             </div>
         </div>
     </section>
@@ -44,14 +44,9 @@
     <!-- Certificates Section -->
     <section class="section cert-section">
         <div class="container">
-            <!-- Filter Bar -->
-            <div class="cert-filter-bar">
+            <!-- Filter Bar — built dynamically by script.js -->
+            <div class="cert-filter-bar" id="cert-filter-bar">
                 <button class="cert-filter-btn active" data-filter="all">All</button>
-                <button class="cert-filter-btn" data-filter="cybersecurity">Cybersecurity</button>
-                <button class="cert-filter-btn" data-filter="linux">Linux</button>
-                <button class="cert-filter-btn" data-filter="development">Web Dev</button>
-                <button class="cert-filter-btn" data-filter="bi">Business Intelligence</button>
-                <button class="cert-filter-btn" data-filter="mobile">Mobile</button>
             </div>
             <!-- Grid -->
             <div id="certificates-grid" class="certificates-grid"></div>
