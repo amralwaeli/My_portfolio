@@ -106,6 +106,17 @@ h2:after {
     box-shadow: var(--shadow);
 }
 
+.btn.btn-secondary {
+    background: transparent;
+    color: var(--color-accent);
+    border: 1px solid var(--color-accent);
+}
+
+.btn.btn-secondary:hover {
+    background: var(--color-accent);
+    color: #fff;
+}
+
 /* CTA Button Alternate Style */
 .btn.btn-cta {
     background: var(--color-cta);
@@ -194,6 +205,11 @@ header {
     width: 100%;
 }
 
+.nav-links a.active:after {
+    width: 100%;
+}
+
+.nav-links a.active,
 .nav-links a:hover {
     color: var(--color-accent);
 }
@@ -212,6 +228,13 @@ header {
     padding: 160px 0 80px;
     text-align: center;
     background-color: var(--bg-card); 
+}
+
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
 }
 
 .hero p {
@@ -427,6 +450,111 @@ textarea {
     resize: vertical;
 }
 
+.form-status {
+    min-height: 24px;
+    margin-top: 14px;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.form-status.success {
+    color: var(--color-cta-dark);
+}
+
+.form-status.error {
+    color: #b91c1c;
+}
+
+.page-hero {
+    padding: 160px 0 70px;
+    background:
+        linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(16, 185, 129, 0.08)),
+        var(--bg-card);
+}
+
+.eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    margin-bottom: 16px;
+}
+
+.page-intro {
+    max-width: 700px;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+.certificates-intro {
+    margin-bottom: 10px;
+}
+
+.certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.certificate-card {
+    overflow: hidden;
+    padding: 0;
+}
+
+.certificate-media {
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(circle at top, rgba(37, 99, 235, 0.16), transparent 55%),
+        linear-gradient(135deg, #eff6ff, #ecfeff);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.certificate-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.certificate-placeholder {
+    padding: 30px;
+    text-align: center;
+    color: var(--color-accent);
+}
+
+.certificate-placeholder i {
+    font-size: 2.6rem;
+    margin-bottom: 14px;
+}
+
+.certificate-body {
+    padding: 24px;
+}
+
+.certificate-body h3 {
+    margin-bottom: 8px;
+}
+
+.certificate-meta {
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+
+.certificate-file {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: #eff6ff;
+    color: var(--color-accent-dark);
+    font-size: 0.88rem;
+    font-weight: 600;
+}
+
 /* Footer */
 footer {
     background: var(--bg-card);
@@ -479,6 +607,10 @@ footer {
     
     h2 {
         font-size: 1.8rem;
+    }
+
+    .page-hero {
+        padding-top: 140px;
     }
 }
 
