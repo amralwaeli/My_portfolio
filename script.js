@@ -360,7 +360,7 @@ function normalizeExternalUrl(url) {
 function openExternalProjectLink(url) {
     const safeUrl = normalizeExternalUrl(url);
     if (!safeUrl) return;
-    window.location.assign(safeUrl);
+    window.open(safeUrl, '_blank', 'noopener,noreferrer');
 }
 
 if (projectsGrid) {
