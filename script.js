@@ -104,46 +104,80 @@ const certificates = [
         title: 'Cybersecurity Fundamentals',
         category: 'cybersecurity',
         categoryLabel: 'Cybersecurity',
-        filename: 'cybersecurity-fundamentals.jpg',
-        issuer: 'Udemy'
+        filename: 'edrrak-cybersecurity.webp',
+        issuer: 'Edrrak'
     },
     {
-        title: 'Linux Administration',
-        category: 'linux',
-        categoryLabel: 'Linux',
-        filename: 'linux-administration.jpg',
-        issuer: 'Udemy'
+        title: 'ICDL',
+        category: 'development',
+        categoryLabel: 'Web Dev',
+        filename: 'edrrak-icdl.webp',
+        issuer: 'Edrrak'
     },
     {
-        title: 'SQL Server BI',
-        category: 'bi',
-        categoryLabel: 'Business Intelligence',
-        filename: 'sql-server-bi.jpg',
-        issuer: 'Udemy'
+        title: 'Python 3',
+        category: 'development',
+        categoryLabel: 'Web Dev',
+        filename: 'sololearn-python3.webp',
+        issuer: 'SoloLearn'
     },
     {
-        title: 'Android Development',
+        title: 'Android Development Training',
         category: 'mobile',
         categoryLabel: 'Mobile',
-        filename: 'android-development.jpg',
-        issuer: 'Udemy'
+        filename: 'udacity-adt.webp',
+        issuer: 'Udacity'
     },
     {
-        title: 'Full-Stack Web Development',
-        category: 'development',
-        categoryLabel: 'Web Dev',
-        filename: 'full-stack-web-development.jpg',
-        issuer: 'Udemy'
+        title: 'Android Development Training',
+        category: 'mobile',
+        categoryLabel: 'Mobile',
+        filename: 'adt-en.webp',
+        issuer: 'Udacity'
     },
     {
-        title: 'HTML Web Development',
+        title: 'Excel',
+        category: 'bi',
+        categoryLabel: 'Business Intelligence',
+        filename: 'seattle-excel.webp',
+        issuer: 'Seattle'
+    },
+    {
+        title: 'HP LIFE',
         category: 'development',
         categoryLabel: 'Web Dev',
-        filename: 'html-web-development.jpg',
-        issuer: 'Udemy'
+        filename: 'hp-life.webp',
+        issuer: 'HP'
+    },
+    {
+        title: 'MIE Recognition',
+        category: 'development',
+        categoryLabel: 'Web Dev',
+        filename: 'mie-recognition.webp',
+        issuer: 'Microsoft'
+    },
+    {
+        title: 'MIE Trainer Academy',
+        category: 'development',
+        categoryLabel: 'Web Dev',
+        filename: 'mie-trainer.webp',
+        issuer: 'Microsoft'
+    },
+    {
+        title: 'Camply 88H',
+        category: 'development',
+        categoryLabel: 'Web Dev',
+        filename: 'camply.webp',
+        issuer: 'Camply'
+    },
+    {
+        title: 'Skills2Work Contribution',
+        category: 'development',
+        categoryLabel: 'Web Dev',
+        filename: 'skills2work.webp',
+        issuer: 'Skills2Work'
     }
 ];
-
 /* =========================================================
    CERTIFICATE GALLERY
    ========================================================= */
