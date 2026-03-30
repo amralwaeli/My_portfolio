@@ -341,7 +341,7 @@ const projects = [
         description: 'A fully responsive sports academy and certification website built with React, Vite, and Tailwind CSS. It features dynamic course and service pages, contact and inquiry forms, live support access, team and testimonial sections, multi-location information, and user sign-in/signup with dashboard functionality.',
         tags: ['React', 'Vite', 'Tailwind CSS'],
         liveUrl: 'https://blackviral.club',
-        githubUrl: ''
+        //githubUrl: ''
     },
     // ── Copy the block above to add more projects ──────────
 ];
