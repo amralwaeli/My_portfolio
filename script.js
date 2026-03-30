@@ -352,6 +352,17 @@ const projects = [
 const projectsGrid = document.getElementById('projects-grid');
 const projFilterBar = document.getElementById('proj-filter-bar');
 
+function normalizeExternalUrl(url) {
+    if (!url) return '';
+    return /^https?:\/\//i.test(url) ? url : `https://${url}`;
+}
+
+function openExternalProjectLink(url) {
+    const safeUrl = normalizeExternalUrl(url);
+    if (!safeUrl) return;
+    window.open(safeUrl, '_blank', 'noopener,noreferrer');
+}
+
 if (projectsGrid) {
     const uniqueClients = [...new Set(projects.map(p => p.client))].length;
     const projCountEl = document.getElementById('proj-count');
@@ -392,7 +403,7 @@ if (projectsGrid) {
                         <button class="cert-view-btn proj-open-btn" data-index="${realIndex}">
                             <i class="fas fa-eye"></i> View Details
                         </button>
-                        ${proj.liveUrl ? `<a href="${proj.liveUrl}" target="_blank" rel="noopener" class="cert-view-btn proj-live-btn">
+                        ${proj.liveUrl ? `<a href="${normalizeExternalUrl(proj.liveUrl)}" target="_blank" rel="noopener" class="cert-view-btn proj-live-btn" data-live-url="${normalizeExternalUrl(proj.liveUrl)}">
                             <i class="fas fa-external-link-alt"></i> Live Site
                         </a>` : ''}
                     </div>
@@ -428,6 +439,13 @@ if (projectsGrid) {
     projectsGrid.addEventListener('click', e => {
         const openBtn = e.target.closest('.proj-open-btn');
         if (openBtn) openProjectModal(parseInt(openBtn.dataset.index));
+
+        const liveBtn = e.target.closest('.proj-live-btn');
+        if (liveBtn) {
+            e.preventDefault();
+            e.stopPropagation();
+            openExternalProjectLink(liveBtn.dataset.liveUrl);
+        }
     });
 }
 
@@ -449,9 +467,11 @@ function openProjectModal(index) {
     const liveBtn = document.getElementById('modal-live-btn');
     const ghBtn = document.getElementById('modal-github-btn');
     liveBtn.style.display = proj.liveUrl ? 'inline-flex' : 'none';
-    liveBtn.href = proj.liveUrl || '#';
+    liveBtn.href = normalizeExternalUrl(proj.liveUrl) || 'javascript:void(0)';
+    liveBtn.dataset.liveUrl = normalizeExternalUrl(proj.liveUrl);
     ghBtn.style.display = proj.githubUrl ? 'inline-flex' : 'none';
-    ghBtn.href = proj.githubUrl || '#';
+    ghBtn.href = normalizeExternalUrl(proj.githubUrl) || 'javascript:void(0)';
+    ghBtn.dataset.githubUrl = normalizeExternalUrl(proj.githubUrl);
 
     document.getElementById('proj-modal').classList.add('active');
     document.getElementById('proj-modal-backdrop').classList.add('active');
@@ -466,6 +486,14 @@ function closeProjectModal() {
 
 document.getElementById('proj-modal-close')?.addEventListener('click', closeProjectModal);
 document.getElementById('proj-modal-backdrop')?.addEventListener('click', closeProjectModal);
+document.getElementById('modal-live-btn')?.addEventListener('click', e => {
+    e.preventDefault();
+    openExternalProjectLink(e.currentTarget.dataset.liveUrl);
+});
+document.getElementById('modal-github-btn')?.addEventListener('click', e => {
+    e.preventDefault();
+    openExternalProjectLink(e.currentTarget.dataset.githubUrl);
+});
 document.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeProjectModal();
 });
