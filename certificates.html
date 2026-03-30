@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Certificates | Amr Alwaeli</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+    <!-- Header -->
     <header>
         <div class="container nav-container">
             <a href="index.html" class="logo">Amr<span> Alwaeli</span></a>
-
             <button class="mobile-menu-btn" aria-label="Open navigation menu">
                 <i class="fas fa-bars"></i>
             </button>
-
             <ul class="nav-links">
                 <li><a href="index.html#about">About</a></li>
                 <li><a href="index.html#resume">Resume</a></li>
@@ -25,25 +26,55 @@
         </div>
     </header>
 
+    <!-- Hero -->
     <section class="page-hero certificates-hero">
         <div class="container">
             <p class="eyebrow">Professional Development</p>
             <h1>Certificates</h1>
-            <p class="page-intro">A dedicated gallery for the certifications I have earned in software engineering, cybersecurity, Linux, BI, and development tools.</p>
+            <p class="page-intro">A curated collection of certifications earned in software engineering, cybersecurity, Linux, business intelligence, and mobile development.</p>
+            <div class="cert-stats">
+                <div class="cert-stat"><span class="cert-stat-num" id="total-count">6</span><span class="cert-stat-label">Certificates</span></div>
+                <div class="cert-stat-divider"></div>
+                <div class="cert-stat"><span class="cert-stat-num">5</span><span class="cert-stat-label">Fields</span></div>
+                <div class="cert-stat-divider"></div>
+                <div class="cert-stat"><span class="cert-stat-num">2025</span><span class="cert-stat-label">Latest Year</span></div>
+            </div>
         </div>
     </section>
 
-    <section class="section">
+    <!-- Certificates Section -->
+    <section class="section cert-section">
         <div class="container">
-            <div class="certificates-intro card">
-                <h2>Certificate Gallery</h2>
-                <p>This page is ready for all of your certificate pictures. Add each image to <strong>assets/images/certificates/</strong> using the filenames shown on the cards below, and the website will display them automatically.</p>
+            <!-- Filter Bar -->
+            <div class="cert-filter-bar">
+                <button class="cert-filter-btn active" data-filter="all">All</button>
+                <button class="cert-filter-btn" data-filter="cybersecurity">Cybersecurity</button>
+                <button class="cert-filter-btn" data-filter="linux">Linux</button>
+                <button class="cert-filter-btn" data-filter="development">Web Dev</button>
+                <button class="cert-filter-btn" data-filter="bi">Business Intelligence</button>
+                <button class="cert-filter-btn" data-filter="mobile">Mobile</button>
             </div>
-
+            <!-- Grid -->
             <div id="certificates-grid" class="certificates-grid"></div>
         </div>
     </section>
 
+    <!-- Lightbox -->
+    <div id="cert-lightbox" class="cert-lightbox" role="dialog" aria-modal="true" aria-label="Certificate viewer">
+        <button class="cert-lightbox-close" id="lightbox-close" aria-label="Close"><i class="fas fa-times"></i></button>
+        <button class="cert-lightbox-nav cert-lightbox-prev" id="lightbox-prev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+        <div class="cert-lightbox-inner">
+            <img id="lightbox-img" src="" alt="">
+            <div class="cert-lightbox-caption">
+                <span class="cert-lightbox-badge" id="lightbox-badge"></span>
+                <h3 id="lightbox-title"></h3>
+            </div>
+        </div>
+        <button class="cert-lightbox-nav cert-lightbox-next" id="lightbox-next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+    </div>
+    <div id="lightbox-backdrop" class="cert-lightbox-backdrop"></div>
+
+    <!-- Footer -->
     <footer>
         <div class="container">
             <p>&copy; 2026 Amr Alwaeli. All rights reserved.</p>
