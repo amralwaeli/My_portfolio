@@ -100,6 +100,20 @@ if (contactForm) {
    ========================================================= */
 const certificates = [
     {
+        title: 'Skills2Work Data Center Contribution',
+        category: 'datacenter',
+        categoryLabel: 'Data Center',
+        filename: 'Skills2Work contribution.webp',
+        issuer: 'Skills2Work'
+    },
+    {
+        title: 'AI Agent Workshop',
+        category: 'AI',
+        categoryLabel: 'AI',
+        filename: 'AI Agent Workshop.webp',
+        issuer: 'ISS-Yemen'
+    },
+    {
         title: 'Cybersecurity',
         category: 'cybersecurity',
         categoryLabel: 'Cybersecurity',
@@ -161,21 +175,8 @@ const certificates = [
         categoryLabel: 'Language',
         filename: 'Camply 88H.webp',
         issuer: 'Camply'
-    },
-    {
-        title: 'Skills2Work Data Center Contribution',
-        category: 'datacenter',
-        categoryLabel: 'Data Center',
-        filename: 'Skills2Work contribution.webp',
-        issuer: 'Skills2Work'
-    },
-    {
-        title: 'AI Agent Workshop',
-        category: 'AI',
-        categoryLabel: 'AI',
-        filename: 'AI Agent Workshop.webp',
-        issuer: 'ISS-Yemen'
     }
+    
 ];
 
 /* =========================================================
