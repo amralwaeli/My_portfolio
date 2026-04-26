@@ -168,6 +168,13 @@ const certificates = [
         categoryLabel: 'Data Center',
         filename: 'Skills2Work contribution.webp',
         issuer: 'Skills2Work'
+    },
+    {
+        title: 'AI Agent Workshop',
+        category: 'AI',
+        categoryLabel: 'AI',
+        filename: 'AI Agent Workshop.webp',
+        issuer: 'ISS-Yemen'
     }
 ];
 
